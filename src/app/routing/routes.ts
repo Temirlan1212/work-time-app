@@ -3,7 +3,7 @@ import { RoutesEnum } from "../shared/constants/routesEnum";
 
 export const publicRoutes = [
   {
-    path: RoutesEnum.HOME,
+    path: RoutesEnum.SCANNER,
     component: Scanner,
   },
 ];
