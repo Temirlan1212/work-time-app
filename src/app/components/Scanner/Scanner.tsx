@@ -5,6 +5,11 @@ import { IGeoLocationCoordinates, IGeoLocationPosition, IRes } from "../../share
 import { Button } from "../../ui/Button/Button";
 // @ts-ignore
 import styles from "./Scanner.module.scss";
+interface IData {
+  location: IGeoLocationCoordinates;
+  date: number;
+  response: string;
+}
 
 export const Scanner = () => {
   const [data, setData] = useState({});
@@ -21,7 +26,7 @@ export const Scanner = () => {
       };
       setData(newObj);
       navigate("/");
-    } else setData("Not Found");
+    } else setData({ response: "not found" });
   };
 
   useEffect(() => {
@@ -42,7 +47,7 @@ export const Scanner = () => {
           }}
         />
       </div>
-
+      <p>{(data as IData).response}</p>
       <Button className="primary" onClick={() => setTorchOn(!torchOn)}>
         Switch Torch {torchOn ? "Off" : "On"}
       </Button>
