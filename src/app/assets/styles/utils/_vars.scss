@@ -1,0 +1,20 @@
+$font-family-primary: "Inter", sans-serif;
+$font-family-secondary: "Raleway", sans-serif;
+
+$clr-dark: (
+  500: black,
+);
+$clr-primary: (
+  300: #4b5fa5,
+);
+$clr-light: (
+  300: #edf1fd,
+);
+
+%onClick-transition {
+  cursor: pointer;
+  &:active {
+    transform: scale(0.9);
+    transition: all 0.5s ease;
+  }
+}
