@@ -1,0 +1,19 @@
+@use "../../assets/styles/utils/" as *;
+
+.button {
+  border-radius: 8px;
+  padding: 10px;
+  max-width: 300px;
+  width: 100%;
+  border: none;
+  font-size: 16px;
+  font-weight: 500;
+  transition: all 0.5s ease;
+
+  @extend %onClick-transition;
+}
+
+.primary {
+  background-color: map-get($map: $clr-primary, $key: 300);
+  color: map-get($map: $clr-light, $key: 300);
+}
