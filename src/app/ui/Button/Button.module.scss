@@ -3,17 +3,27 @@
 .button {
   border-radius: 8px;
   padding: 10px;
-  max-width: 300px;
+  max-width: 250px;
   width: 100%;
   border: none;
   font-size: 16px;
   font-weight: 500;
   transition: all 0.5s ease;
+  border: none;
 
-  @extend %onClick-transition;
+  @extend %active-scale;
 }
 
 .primary {
   background-color: map-get($map: $clr-primary, $key: 300);
-  color: map-get($map: $clr-light, $key: 300);
+  color: map-get($map: $clr-light, $key: 100);
+}
+.gray {
+  background-color: map-get($map: $clr-dark, $key: 300);
+  color: map-get($map: $clr-light, $key: 100);
+  &:focus {
+    box-shadow: rgb(95 109 136 / 50%) 0px 0px 0px 0.2rem;
+    background-color: map-get($map: $clr-dark, $key: 300);
+    border-color: map-get($map: $clr-dark, $key: 400);
+  }
 }

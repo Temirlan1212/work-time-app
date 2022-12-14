@@ -14,7 +14,11 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react-jsx"
+    "jsx": "react-jsx",
+    "baseUrl": "./src",
+    "paths": {
+      "@/assets/*": ["app/assets/*"]
+    }
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules", "src/**/*.spec.ts"]

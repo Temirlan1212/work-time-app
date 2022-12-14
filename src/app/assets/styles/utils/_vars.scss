@@ -1,20 +1,33 @@
 $font-family-primary: "Inter", sans-serif;
 $font-family-secondary: "Raleway", sans-serif;
+$box-shadow: rgb(0 0 0 / 5%) 4px 4px 25px;
+// $box-shadow: rgb(0 0 0 / 19%) 1px 5px 14px;
 
 $clr-dark: (
+  200: rgb(95, 109, 136),
+  300: rgb(74, 85, 106),
+  400: rgb(66, 75, 94),
   500: black,
 );
 $clr-primary: (
   300: #4b5fa5,
 );
 $clr-light: (
-  300: #edf1fd,
+  100: #edf1fd,
+  200: rgb(227, 231, 237),
 );
 
-%onClick-transition {
+$clr-warning: (
+  200: rgb(255, 214, 185),
+);
+
+%active-scale {
   cursor: pointer;
   &:active {
     transform: scale(0.9);
     transition: all 0.5s ease;
   }
 }
+
+// background-color: rgb(74, 85, 106);
+//     border-color: rgb(66, 75, 94);

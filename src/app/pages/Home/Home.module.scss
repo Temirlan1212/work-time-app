@@ -1,0 +1,37 @@
+@use "../../assets/styles/utils/" as *;
+
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+
+  h2 {
+    color: map-get($map: $clr-dark, $key: 400);
+  }
+}
+.scanBox {
+  //   box-shadow: $box-shadow;
+  display: flex;
+  flex-direction: column;
+  //   max-width: 250px;
+  //   width: 100%;
+  align-items: center;
+  padding: 30px;
+  @extend %active-scale;
+  border-radius: 8px;
+  fill: map-get($map: $clr-dark, $key: 400);
+
+  text-decoration: none;
+  font-size: 20px;
+  margin-bottom: 20px;
+
+  div {
+    color: map-get($map: $clr-dark, $key: 400);
+  }
+  svg {
+    width: 60px;
+    height: 60px;
+  }
+}

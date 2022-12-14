@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import BarcodeScannerComponent from "react-qr-barcode-scanner";
 import { useNavigate } from "react-router-dom";
 import { IGeoLocationCoordinates, IGeoLocationPosition, IRes } from "../../shared/types/Scanner";
+import { useLazyFetchPostsQuery } from "../../store/api/post";
 import { Button } from "../../ui/Button/Button";
 // @ts-ignore
 import styles from "./Scanner.module.scss";
@@ -12,21 +13,16 @@ interface IData {
 }
 
 export const Scanner = () => {
-  const [data, setData] = useState({});
+  const [qrRes, setQrRes] = useState("");
   const [torchOn, setTorchOn] = useState(false);
   const [location, setLocation] = useState<IGeoLocationCoordinates>();
+  const [postPosts, res] = useLazyFetchPostsQuery();
   const navigate = useNavigate();
 
-  const ScannerRes = (result: unknown, err: unknown) => {
+  const ScannerRes = async (result: unknown) => {
     if (result) {
-      let newObj = {
-        location,
-        date: Date.now(),
-        resonse: (result as IRes).text,
-      };
-      setData(newObj);
-      navigate("/");
-    } else setData({ response: "not found" });
+      setQrRes((result as IRes).text);
+    } else setQrRes("не найдено");
   };
 
   useEffect(() => {
@@ -35,19 +31,37 @@ export const Scanner = () => {
     });
   }, []);
 
+  useEffect(() => {
+    if (qrRes == "https://instagram.com") {
+      let newObj = {
+        date: Date.now(),
+        accuracy: location?.accuracy,
+        latitude: location?.latitude,
+        longitude: location?.longitude,
+        // resonse: JSON.stringify((result as IRes).text),
+      };
+      postPosts(newObj);
+    }
+  }, [qrRes]);
+
+  if (res.isSuccess) {
+    navigate("/");
+  }
+
   return (
     <div className={styles.main}>
       <div className={styles.barcodeScanner}>
         <BarcodeScannerComponent
-          width={300}
-          height={300}
           torch={torchOn}
           onUpdate={(err: unknown, res: unknown | undefined) => {
-            ScannerRes(res, err);
+            ScannerRes(res);
           }}
         />
+        <div className={styles.scannerBorder}></div>
       </div>
-      <p>{(data as IData).response}</p>
+      <p>{res.isLoading ? "loading..." : ""}</p>
+
+      <p>{qrRes}</p>
       <Button className="primary" onClick={() => setTorchOn(!torchOn)}>
         Switch Torch {torchOn ? "Off" : "On"}
       </Button>

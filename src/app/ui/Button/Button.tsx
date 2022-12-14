@@ -6,7 +6,7 @@ import styles from "./Button.module.scss";
 import cn from "classname";
 
 export interface IButton extends ButtonHTMLAttributes<HTMLButtonElement> {
-  className: "primary" | "dark" | "transparent";
+  className: "primary" | "dark" | "transparent" | "gray";
 }
 
 export const Button: FC<IButton> = ({ children, className, ...rest }) => {
